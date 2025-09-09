@@ -1,52 +1,49 @@
 package service.impl;
 
-import model.Category;
-import service.inft.ICategoryService;
 import java.util.List;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.PersistenceContext;
+import dao.CategoryDao;
+import dao.impl.CategoryDaoImpl;
+import model.Category;
+import model.User;
+import service.inft.ICategoryService;
 
 public class CategoryServiceImpl implements ICategoryService {
-
-	@PersistenceContext
-    private EntityManager entityManager;
+    private final CategoryDao dao = new CategoryDaoImpl();
 
     @Override
-    public void insert(Category category) {
-        EntityTransaction transaction = entityManager.getTransaction();
-        try {
-            transaction.begin();
-            entityManager.persist(category);
-            transaction.commit();
-        } catch (RuntimeException e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-            throw e;
-        }
-    }
-    @Override
-    public void update(Category category) {
-        // Update logic if needed
+    public void insert(Category c) {
+        dao.insert(c);
     }
 
     @Override
-    public void delete(int categoryId) {
-        Category category = entityManager.find(Category.class, categoryId);
-        if (category != null) {
-            entityManager.remove(category);
-        }
+    public void update(Category c) {
+        dao.update(c);
     }
 
     @Override
-    public Category findById(int categoryId) {
-        return entityManager.find(Category.class, categoryId);
+    public void delete(int id) {
+        dao.delete(id);
     }
+
+    @Override
+    public Category findById(int id) {
+        return dao.findById(id);
+    }
+
+//    @Override
+//    public List<Category> findAll() {
+//        return dao.findAll();
+//    }
+
+//    @Override
+//    public List<Category> search(String keyword) {
+//        return dao.search(keyword);
+//    }
 
     @Override
     public List<Category> findAll() {
-        return entityManager.createQuery("SELECT c FROM Category c", Category.class).getResultList();
+        return dao.findAll();
     }
+
 }

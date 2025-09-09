@@ -1,21 +1,14 @@
 package dao;
-import config.JPAConfig;
-import jakarta.persistence.*;
+
+import java.util.List;
 import model.Category;
-public class CategoryDao {
-	void insert(Category category) {
-		EntityManager enma = JPAConfig.getEntityManager();
-		EntityTransaction trans = enma.getTransaction();
-		try {
-			trans.begin();
-			enma.persist(category);
-			trans.commit();
-		}catch(Exception e) {
-			e.printStackTrace();
-			trans.rollback();
-			throw e;
-		}finally {
-			enma.close();
-		}
-	}
+
+public interface CategoryDao {
+    void insert(Category category);
+    void update(Category category);
+    void delete(int id);
+    Category findById(int id);
+    List<Category> findAll();
+    List<Category> search(String keyword);
+    List<Category> findByUserId(int userId);
 }

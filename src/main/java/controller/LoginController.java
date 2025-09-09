@@ -18,7 +18,11 @@ import service.impl.UserServiceImpl;
 @WebServlet(urlPatterns = "/login")
 public class LoginController extends HttpServlet {
 
-    // Tạo một đối tượng Logger
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// Tạo một đối tượng Logger
     private static final Logger logger = Logger.getLogger(LoginController.class.getName());
 
     @Override

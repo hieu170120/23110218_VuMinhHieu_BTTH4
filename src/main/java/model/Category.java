@@ -1,86 +1,55 @@
 package model;
 
 import jakarta.persistence.*;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "categories")  // Tên bảng trong cơ sở dữ liệu
-@NamedQuery(name="Category.findAll", query="SELECT c FROM Category c")
-public class Category {
+@Table(name = "categories")
+@NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c")
+public class Category implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Tự động sinh giá trị cho id
-    @Column(name = "id", columnDefinition = "INT")  // Kiểu INT
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", columnDefinition = "INT")
     private int id;
 
-    @Column(name = "name", nullable = false, length = 255, unique = true, columnDefinition = "NVARCHAR(255)")  // Kiểu NVARCHAR(255)
+    @Column(name = "name", nullable = false, length = 255, unique = true, columnDefinition = "NVARCHAR(255)")
     private String name;
 
-    @Column(name = "icon", nullable = true, length = 255, columnDefinition = "NVARCHAR(255)")  // Kiểu NVARCHAR(255)
+    @Column(name = "icon", nullable = true, length = 255, columnDefinition = "NVARCHAR(255)")
     private String icon;
 
-    @Temporal(TemporalType.TIMESTAMP)  // Kiểu TIMESTAMP
-    @Column(name = "created_date", columnDefinition = "TIMESTAMP")  // Kiểu TIMESTAMP
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date", insertable = false, updatable = false, nullable = true)
     private Date createdDate;
+
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)  // Foreign key to user table
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
-    // Constructor không tham số
+
     public Category() {}
 
-    // Constructor có tham số
     public Category(int id, String name, String icon) {
         this.id = id;
         this.name = name;
         this.icon = icon;
     }
 
-    // Getter và Setter cho id
-    public int getId() {
-        return id;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    // Getter và Setter cho name
-    public String getName() {
-        return name;
-    }
+    public String getIcon() { return icon; }
+    public void setIcon(String icon) { this.icon = icon; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public Date getCreatedDate() { return createdDate; }
+    public void setCreatedDate(Date createdDate) { this.createdDate = createdDate; }
 
-    // Getter và Setter cho icon
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    // Getter và Setter cho createdDate
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     @Override
     public String toString() {
@@ -89,11 +58,11 @@ public class Category {
                 ", name='" + name + '\'' +
                 ", icon='" + icon + '\'' +
                 ", createdDate=" + createdDate +
+                ", user=" + (user != null ? user.getId() : null) +
                 '}';
     }
 
-	public void setDescription(String description) {
-		// TODO Auto-generated method stub
-		
-	}
+    public void setDescription(String description) {
+        // TODO Auto-generated method stub
+    }
 }

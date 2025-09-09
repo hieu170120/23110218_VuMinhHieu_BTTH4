@@ -31,7 +31,7 @@ public class WaitingController extends HttpServlet {
 			// Logic phân quyền dựa trên roleId
 			switch (u.getRoleId()) {
 				case 1: // Admin - Quyền cao nhất
-					req.getRequestDispatcher("/views/admin/category/list-category.jsp").forward(req, resp);
+					resp.sendRedirect(req.getContextPath() + "/admin/category/list");
 					break;
 				case 2: // Manager - Quyền trung bình  
 					resp.sendRedirect(req.getContextPath() + "/views/manager/home.jsp");

@@ -1,20 +1,28 @@
 package dao.inft;
-import java.util.List;
 
+import java.util.List;
 import model.Category;
+
 public interface ICategoryDao {
-	// Phương thức thêm mới một Category vào cơ sở dữ liệu
+    
+    // Thêm mới một Category
     void insert(Category category);
 
-    // Phương thức cập nhật thông tin của một Category
+    // Cập nhật thông tin Category
     void update(Category category);
 
-    // Phương thức xóa một Category từ cơ sở dữ liệu
+    // Xóa Category theo ID
     void delete(int categoryId);
 
-    // Phương thức tìm Category theo ID
+    // Tìm Category theo ID
     Category findById(int categoryId);
 
-    // Phương thức lấy tất cả các Category
+    // Lấy tất cả Category
     List<Category> findAll();
+
+    // Tìm kiếm Category theo từ khóa
+    List<Category> search(String keyword);
+
+    // Lấy Category theo userId (dùng cho phân quyền)
+    List<Category> findByUserId(int userId);
 }

@@ -9,7 +9,7 @@ https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
 		<class>iotstar.model.User</class>
 		<properties>
 			<property name="jakarta.persistence.jdbc.url"
-				value="jdbc:sqlserver://DESKTOP-HPRPTG8:1433;databaseName=JPA" />
+				value="jdbc:sqlserver://DESKTOP-HPRPTG8:1433;databaseName=JPA;encrypt=true;trustServerCertificate=true" />
 			<property name="jakarta.persistence.jdbc.driver"
 				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 			<property name="jakarta.persistence.jdbc.user" value="sa" />
@@ -20,9 +20,6 @@ https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.SQLServer2012Dialect" />
-				<property name="jakarta.persistence.jdbc.url"
-    value="jdbc:sqlserver://DESKTOP-HPRPTG8:1433;databaseName=JPA;encrypt=false;trustServerCertificate=true;" />
-				
 		</properties>
 	</persistence-unit>
 </persistence>

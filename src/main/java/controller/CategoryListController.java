@@ -22,12 +22,12 @@ public class CategoryListController extends HttpServlet {
         try {
             List<Category> cateList = cateService.findAll();
             req.setAttribute("cateList", cateList);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/category/list-category.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/views/admin/category/list-category.jsp");
             dispatcher.forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("error", "Có lỗi xảy ra khi tải danh sách danh mục: " + e.getMessage());
-            RequestDispatcher dispatcher = req.getRequestDispatcher("/admin/category/list-category.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/views/admin/category/list-category.jsp");
             dispatcher.forward(req, resp);
         }
     }
