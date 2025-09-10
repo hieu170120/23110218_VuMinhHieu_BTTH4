@@ -133,7 +133,7 @@
 
                                 <!-- Các liên kết Sửa và Xóa -->
                                 <td class="center">
-                                    <a href="<c:url value='/admin/category/edit-category.jsp?id=${cate.id}'/>" class="btn btn-warning">Sửa</a>
+                                    <a href="<c:url value='/views/admin/category/edit-category.jsp?id=${cate.id}'/>" class="btn btn-warning">Sửa</a>
                                     | 
                                     <a href="<c:url value='/admin/category/delete?id=${cate.id}'/>" class="btn btn-danger" 
                                        onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?')">Xóa</a>

@@ -2,7 +2,6 @@ package model;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Table(name = "categories")
@@ -19,10 +18,6 @@ public class Category implements Serializable {
 
     @Column(name = "icon", nullable = true, length = 255, columnDefinition = "NVARCHAR(255)")
     private String icon;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_date", insertable = false, updatable = false, nullable = true)
-    private Date createdDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = true)
@@ -45,9 +40,6 @@ public class Category implements Serializable {
     public String getIcon() { return icon; }
     public void setIcon(String icon) { this.icon = icon; }
 
-    public Date getCreatedDate() { return createdDate; }
-    public void setCreatedDate(Date createdDate) { this.createdDate = createdDate; }
-
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
 
@@ -57,12 +49,7 @@ public class Category implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", icon='" + icon + '\'' +
-                ", createdDate=" + createdDate +
                 ", user=" + (user != null ? user.getId() : null) +
                 '}';
-    }
-
-    public void setDescription(String description) {
-        // TODO Auto-generated method stub
     }
 }

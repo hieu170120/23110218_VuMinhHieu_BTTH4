@@ -62,7 +62,7 @@ public class CategoryController extends HttpServlet {
             String description = req.getParameter("description");
             Category category = new Category();
             category.setName(name);
-            category.setDescription(description);
+//            category.setDescription(description);
             cateService.insert(category);
             resp.sendRedirect("/admin/category");
         } else if (url.contains("/admin/category/edit-category")) {
@@ -72,7 +72,7 @@ public class CategoryController extends HttpServlet {
             String description = req.getParameter("description");
             Category category = cateService.findById(categoryId);
             category.setName(name);
-            category.setDescription(description);
+//            category.setDescription(description);
             cateService.update(category);
             resp.sendRedirect("/admin/category");
         }

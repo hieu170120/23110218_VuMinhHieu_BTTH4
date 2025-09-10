@@ -114,7 +114,7 @@
             </div>
         </c:if>
         
-        <form role="form" action="edit" method="post" enctype="multipart/form-data">
+        <form role="form" action="${pageContext.request.contextPath}/admin/category/edit" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="${category.id}" />
             <input type="hidden" name="oldIcon" value="${category.icon}" />
             
